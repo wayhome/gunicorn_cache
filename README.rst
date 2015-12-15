@@ -36,7 +36,7 @@ Add these settings in Gunicorn configuration file:
         worker_class = 'gunicorn_cache.RedisWorker'
 
 
- Then run the gunicorn.
+Then run the gunicorn.
 
 
 
