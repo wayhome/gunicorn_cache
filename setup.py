@@ -25,7 +25,7 @@ test_requirements = [
 
 setup(
     name='gunicorn_cache',
-    version='0.1.0',
+    version='0.1.1',
     description="Cache worker for gunicorn",
     long_description=readme + '\n\n' + history,
     author="Young King",

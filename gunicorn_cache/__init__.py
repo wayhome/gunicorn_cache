@@ -20,10 +20,16 @@ class CacheStore(Setting):
     """
 
 
+def validate_list_dict(val):
+    if not isinstance(val, list):
+        raise TypeError("Not a list: %s" % val)
+    return [validate_dict(i) for i in val]
+
+
 class CacheRoute(Setting):
     name = "cache_route"
     section = "Cache Route"
-    validator = validate_dict
+    validator = validate_list_dict
     desc = """
     Cache Route Config
     """

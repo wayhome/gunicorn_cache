@@ -17,7 +17,6 @@ from gunicorn import six
 from redis import Redis
 
 
-
 class RedisWorker(SyncWorker):
 
     def __init__(self, *args, **kwargs):
@@ -47,19 +46,21 @@ class RedisWorker(SyncWorker):
 
             use_cache = False
             cache_key = "{0}:{1}".format(req.uri, req.method)
-            for urlpattern, value in self.cache_route.items():
-                if re.match(urlpattern, req.uri) and req.method in value["methods"]:
+            for route in self.cache_route:
+                if re.match(route['url'], req.uri) and req.method in route["methods"]:
                     use_cache = True
                     result = self.redis.get(cache_key)
                     if not result:
                         respiter = self.wsgi(environ, resp.start_response)
                         if resp.status_code == 200:
                             result = {'body': [x for x in respiter], 'headers': resp.headers}
-                            self.redis.set(cache_key, pickle.dumps(result), value.get("expire", 300))
+                            self.redis.set(cache_key, pickle.dumps(result), route.get("expire", 300))
                     else:
                         result = pickle.loads(result)
                         resp.start_response('200 OK', result['headers'])
                         respiter = result['body']
+                        if route.get("prolong", True):
+                            self.redis.expire(cache_key, route.get("expire", 300))
             if not use_cache:
                 respiter = self.wsgi(environ, resp.start_response)
             try:
