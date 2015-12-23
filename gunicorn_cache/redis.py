@@ -62,6 +62,7 @@ class RedisWorker(SyncWorker):
                         respiter = result['body']
                         if route.get("prolong", True):
                             self.redis.expire(cache_key, route.get("expire", 300))
+                    break
             if not use_cache:
                 respiter = self.wsgi(environ, resp.start_response)
             try:

@@ -3,7 +3,7 @@
 History
 -------
 
-0.1.2 (2015-12-23)
+0.1.3 (2015-12-23)
 -------------------
 * Fix a response duplicated set bug
 
