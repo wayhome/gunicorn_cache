@@ -57,7 +57,8 @@ class RedisWorker(SyncWorker):
                             self.redis.set(cache_key, pickle.dumps(result), route.get("expire", 300))
                     else:
                         result = pickle.loads(result)
-                        resp.start_response('200 OK', result['headers'])
+                        if resp.status is None:
+                            resp.start_response('200 OK', result['headers'])
                         respiter = result['body']
                         if route.get("prolong", True):
                             self.redis.expire(cache_key, route.get("expire", 300))

@@ -3,6 +3,10 @@
 History
 -------
 
+0.1.2 (2015-12-23)
+-------------------
+* Fix a response duplicated set bug
+
 0.1.1 (2015-12-16)
 --------------------
 * Change configuration
