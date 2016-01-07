@@ -3,6 +3,10 @@
 History
 -------
 
+0.1.5 (2016-01-07)
+------------------
+* Improve refresh cache
+
 0.1.4 (2016-01-07)
 ------------------
 * Add refresh cache method
