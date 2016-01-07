@@ -40,6 +40,19 @@ Then run the gunicorn.
 
 
 
+Advance Usage
+-------------
+
+Refresh cache
+~~~~~~~~~~~~~
+
+::
+
+   curl -H "GUNICORN_CACHE_REFRESH:true" -X <method> <url>
+
+
+
+
 Features
 --------
 

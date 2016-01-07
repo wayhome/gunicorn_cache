@@ -50,7 +50,7 @@ class RedisWorker(SyncWorker):
                 if re.match(route['url'], req.uri) and req.method in route["methods"]:
                     use_cache = True
                     result = self.redis.get(cache_key)
-                    if not result:
+                    if not result or environ.get('HTTP_GUNICORN_CACHE_REFRESH'):
                         respiter = self.wsgi(environ, resp.start_response)
                         if resp.status_code == 200:
                             result = {'body': [x for x in respiter], 'headers': resp.headers}

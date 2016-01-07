@@ -3,6 +3,10 @@
 History
 -------
 
+0.1.4 (2016-01-07)
+------------------
+* Add refresh cache method
+
 0.1.3 (2015-12-23)
 -------------------
 * Fix a response duplicated set bug
