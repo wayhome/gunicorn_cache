@@ -10,7 +10,7 @@ Tests for `gunicorn_cache` module.
 
 import unittest
 
-from gunicorn_cache import gunicorn_cache
+from gunicorn_cache import RedisWorker
 
 
 class TestGunicorn_cache(unittest.TestCase):
